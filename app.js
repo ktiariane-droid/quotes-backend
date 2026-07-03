@@ -19,7 +19,8 @@ const cors = require('cors')
 // ------------------------------------------------------------
 // STEP 1 — Import your database connection and Quote model
 
-
+const db = require('./db')
+const Quote = require('./models/quote')
 
 
 
@@ -39,6 +40,7 @@ app.use(morgan('dev'))   // logs every incoming request
 app.use(cors())          // allows the React frontend to call this server
 
 
+
 // ============================================================
 // ROUTES
 // ============================================================
@@ -51,6 +53,12 @@ app.use(cors())          // allows the React frontend to call this server
 // ------------------------------------------------------------
 app.get('/api/quotes', async (req, res, next) => {
   try {
+   let quotes = await Quote.findAll()
+   
+   res.sattus(200).send(quotes)
+   
+   
+   
 
   } catch (error) {
     next(error)
@@ -126,6 +134,7 @@ app.use((error, req, res, next) => {
 // Always await it before calling app.listen.
 // ============================================================
 async function startApp() {
+  await db.sync();
   // connect to your db here before the express server listens
 
 
