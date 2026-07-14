@@ -132,6 +132,15 @@ app.use((error, req, res, next) => {
 })
 
 
+app.get((req, res, next) => {
+  res.send('404 - You should not be here')
+})
+
+app.get((err, req, res, next) => {
+  res.sendStatus(500)
+  console.log(err)
+})
+
 // ============================================================
 // STEP 2 — Start the server
 //
