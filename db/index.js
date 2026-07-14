@@ -14,7 +14,11 @@
 // Every other file that needs the database imports from here.
 // Never create a second Sequelize connection in another file.
 // ============================================================
+const dotenv = require ("dotenv") 
+
+dotenv.config();
+const databaseLink = process.env.DATABASE_URL;
 const {Sequelize} = require('sequelize');
-const sequelize = new Sequelize('postgres://postgres:root@localhost:5432/quotes')
+const sequelize = new Sequelize(databaseLink)
 
 module.exports = sequelize;
