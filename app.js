@@ -55,7 +55,7 @@ app.get('/api/quotes', async (req, res, next) => {
   try {
    let quotes = await Quote.findAll()
    
-   res.sattus(200).send(quotes)
+   res.status(200).send(quotes)
    
    
    
@@ -78,6 +78,9 @@ app.get('/api/quotes', async (req, res, next) => {
 // ------------------------------------------------------------
 app.post('/api/quotes', async (req, res, next) => {
   try {
+    const newQuote = await Quote.create(req.body)
+    res.status(204)
+
 
   } catch (error) {
     next(error)
@@ -99,6 +102,9 @@ app.post('/api/quotes', async (req, res, next) => {
 // ------------------------------------------------------------
 app.delete('/api/quotes/:id', async (req, res, next) => {
   try {
+    req.params.id
+
+    let quoteId = Quote.findOne
 
   } catch (error) {
     next(error)
